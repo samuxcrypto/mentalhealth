@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mind Matter — Mental Health Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sage:    #7A9E87;
+      --mist:    #C8D8D1;
+      --dusk:    #2E3A44;
+      --clay:    #C4775A;
+      --cream:   #F6F2EC;
+      --white:   #FFFFFF;
+      --ink:     #1A2329;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 5%;
+      background: rgba(246,242,236,0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--mist);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; color: var(--dusk); letter-spacing: 0.03em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--dusk);
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 5% 6rem 8%;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--sage);
+      margin-bottom: 1.5rem; font-weight: 500;
+    }
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.12;
+      color: var(--dusk);
+      margin-bottom: 1.8rem;
+    }
+    .hero-headline em {
+      font-style: italic; color: var(--clay);
+    }
+    .hero-body {
+      font-size: 1.05rem; color: #4A5B64;
+      max-width: 42ch; margin-bottom: 2.5rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--dusk);
+      color: var(--white);
+      border-radius: 2px;
+      text-decoration: none;
+      font-weight: 500; font-size: 0.9rem; letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--sage); transform: translateY(-1px); }
+
+    .hero-right {
+      background: var(--sage);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-blob {
+      position: absolute; width: 120%; height: 120%;
+      background: radial-gradient(ellipse at 60% 40%, #9BBAA8 0%, var(--sage) 55%, #5E8270 100%);
+      animation: slowdrift 10s ease-in-out infinite alternate;
+    }
+    @keyframes slowdrift {
+      from { transform: scale(1) rotate(0deg); }
+      to   { transform: scale(1.06) rotate(3deg); }
+    }
+    .hero-quote {
+      position: relative; z-index: 2;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.2vw, 1.75rem);
+      color: var(--white);
+      text-align: center;
+      padding: 3rem;
+      line-height: 1.5;
+    }
+    .hero-quote cite {
+      display: block; margin-top: 1.2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal; font-size: 0.8rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 8%; }
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--clay);
+      margin-bottom: 0.6rem; font-weight: 500;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--dusk); line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .divider {
+      width: 3rem; height: 2px;
+      background: var(--sage); margin-bottom: 2.5rem;
+    }
+
+    /* ── PILLARS ── */
+    .pillars { background: var(--white); }
+    .pillars-intro { max-width: 55ch; margin-bottom: 3.5rem; color: #4A5B64; }
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .pillar-card {
+      border: 1px solid var(--mist);
+      border-radius: 4px; padding: 2rem;
+      transition: box-shadow 0.25s, transform 0.2s;
+      background: var(--cream);
+    }
+    .pillar-card:hover {
+      box-shadow: 0 8px 28px rgba(46,58,68,0.1);
+      transform: translateY(-3px);
+    }
+    .pillar-icon {
+      width: 2.8rem; height: 2.8rem;
+      background: var(--mist);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: 1.2rem;
+    }
+    .pillar-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; color: var(--dusk);
+      margin-bottom: 0.6rem;
+    }
+    .pillar-card p { font-size: 0.9rem; color: #5A6970; line-height: 1.65; }
+
+    /* ── SIGNS ── */
+    .signs { background: var(--dusk); }
+    .signs .section-label { color: var(--mist); }
+    .signs .section-title { color: var(--white); }
+    .signs .divider { background: var(--clay); }
+    .signs-intro { color: var(--mist); max-width: 55ch; margin-bottom: 3rem; }
+    .signs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .sign-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.5rem;
+      border: 1px solid rgba(200,216,209,0.2);
+      border-radius: 4px;
+    }
+    .sign-dot {
+      width: 0.5rem; height: 0.5rem;
+      background: var(--clay); border-radius: 50%;
+      margin-top: 0.55rem; flex-shrink: 0;
+    }
+    .sign-item p { color: var(--mist); font-size: 0.95rem; }
+    .sign-item strong { display: block; color: var(--white); margin-bottom: 0.2rem; font-weight: 500; }
+
+    /* ── STRATEGIES ── */
+    .strategies { background: var(--cream); }
+    .strategies-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .strategies-text .section-title { margin-top: 0.8rem; }
+    .strategies-text p { color: #4A5B64; margin-bottom: 1.5rem; }
+    .strategy-list { list-style: none; }
+    .strategy-list li {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--mist);
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .strategy-list li:last-child { border-bottom: none; }
+    .strategy-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--sage);
+      font-weight: 700; flex-shrink: 0; line-height: 1.6;
+    }
+    .strategy-list li p { font-size: 0.95rem; color: #4A5B64; }
+    .strategy-list li strong { display: block; color: var(--dusk); margin-bottom: 0.2rem; }
+
+    /* ── CRISIS BANNER ── */
+    .crisis {
+      background: var(--clay);
+      padding: 4rem 8%;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 2rem;
+    }
+    .crisis-text h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--white); font-size: 1.6rem; margin-bottom: 0.4rem;
+    }
+    .crisis-text p { color: rgba(255,255,255,0.85); font-size: 0.95rem; }
+    .crisis-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-white {
+      display: inline-block; padding: 0.8rem 1.8rem;
+      background: var(--white); color: var(--clay);
+      border-radius: 2px; text-decoration: none;
+      font-weight: 500; font-size: 0.9rem; transition: opacity 0.2s;
+    }
+    .btn-white:hover { opacity: 0.9; }
+    .btn-outline-white {
+      display: inline-block; padding: 0.8rem 1.8rem;
+      border: 1.5px solid rgba(255,255,255,0.7); color: var(--white);
+      border-radius: 2px; text-decoration: none;
+      font-weight: 500; font-size: 0.9rem; transition: background 0.2s;
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.12); }
+
+    /* ── RESOURCES ── */
+    .resources { background: var(--white); }
+    .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.8rem; margin-top: 3rem; }
+    .resource-card {
+      border-radius: 4px; overflow: hidden;
+      border: 1px solid var(--mist);
+    }
+    .resource-card-bar { height: 4px; }
+    .bar-sage  { background: var(--sage); }
+    .bar-clay  { background: var(--clay); }
+    .bar-dusk  { background: var(--dusk); }
+    .bar-mist  { background: #8BAAB8; }
+    .resource-card-body { padding: 1.5rem; }
+    .resource-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; color: var(--dusk); margin-bottom: 0.5rem;
+    }
+    .resource-card p { font-size: 0.88rem; color: #5A6970; margin-bottom: 1rem; line-height: 1.6; }
+    .resource-card a {
+      font-size: 0.8rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--sage);
+      text-decoration: none; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .resource-card a:hover { color: var(--clay); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dusk);
+      padding: 3rem 8%;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--white); font-size: 1.2rem;
+    }
+    .footer-note { font-size: 0.8rem; color: rgba(200,216,209,0.6); max-width: 42ch; }
+    .footer-hotline { color: var(--mist); font-size: 0.85rem; text-align: right; }
+    .footer-hotline strong { display: block; color: var(--white); font-size: 1.1rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 40vh; }
+      .hero-left { padding: 4rem 6% 3rem; }
+      .strategies-layout { grid-template-columns: 1fr; gap: 2rem; }
+      nav { padding: 1rem 5%; }
+      .nav-links { gap: 1.2rem; }
+      section { padding: 4rem 6%; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .footer-hotline { text-align: left; }
+      .crisis { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-blob { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Mind Matter</div>
+  <ul class="nav-links">
+    <li><a href="#pillars">Pillars</a></li>
+    <li><a href="#signs">Signs</a></li>
+    <li><a href="#strategies">Strategies</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Mental Health Awareness</p>
+    <h1 class="hero-headline">Your mind<br />deserves<br /><em>the same care</em><br />as your body.</h1>
+    <p class="hero-body">Mental health shapes how we think, feel, and connect. Understanding it is the first step toward a fuller, more grounded life.</p>
+    <a href="#pillars" class="btn-primary">Start Here</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-blob"></div>
+    <blockquote class="hero-quote">
+      "You don't have to be positive all the time. It's perfectly okay to feel sad, angry, annoyed, frustrated, or anxious."
+      <cite>— Lori Deschene</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars" id="pillars">
+  <p class="section-label">The Foundations</p>
+  <h2 class="section-title">Four pillars of mental wellbeing</h2>
+  <div class="divider"></div>
+  <p class="pillars-intro">Mental health isn't a single thing — it's a living balance of emotional, psychological, social, and physical dimensions working together.</p>
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-icon">🧠</div>
+      <h3>Emotional Health</h3>
+      <p>The ability to recognize, understand, and regulate your emotions — sitting with difficult feelings without being ruled by them.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">🤝</div>
+      <h3>Social Connection</h3>
+      <p>Meaningful relationships and a sense of belonging are among the strongest predictors of long-term mental health and resilience.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">💭</div>
+      <h3>Cognitive Wellbeing</h3>
+      <p>How you think about yourself and the world around you. Identifying and gently challenging unhelpful thought patterns is transformative.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">🌿</div>
+      <h3>Physical Foundation</h3>
+      <p>Sleep, movement, and nutrition are not separate from mental health — they are part of it. The body and mind are one system.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNS -->
+<section class="signs" id="signs">
+  <p class="section-label">Know the signals</p>
+  <h2 class="section-title">Signs you may need support</h2>
+  <div class="divider"></div>
+  <p class="signs-intro">These experiences don't mean something is permanently wrong. They mean your mind is asking for attention — and that's worth listening to.</p>
+  <div class="signs-grid">
+    <div class="sign-item">
+      <div class="sign-dot"></div>
+      <p><strong>Persistent low mood</strong>Feeling sad, empty, or hopeless most of the day, more days than not.</p>
+    </div>
+    <div class="sign-item">
+      <div class="sign-dot"></div>
+      <p><strong>Withdrawal from others</strong>Pulling away from friends, family, and activities that once mattered.</p>
+    </div>
+    <div class="sign-item">
+      <div class="sign-dot"></div>
+      <p><strong>Changes in sleep or appetite</strong>Sleeping too much or too little; eating far more or less than usual.</p>
+    </div>
+    <div class="sign-item">
+      <div class="sign-dot"></div>
+      <p><strong>Difficulty concentrating</strong>Trouble thinking clearly, making decisions, or remembering things.</p>
+    </div>
+    <div class="sign-item">
+      <div class="sign-dot"></div>
+      <p><strong>Overwhelming anxiety</strong>Persistent worry or fear that feels difficult to control or out of proportion.</p>
+    </div>
+    <div class="sign-item">
+      <div class="sign-dot"></div>
+      <p><strong>Loss of purpose</strong>Feeling like nothing matters, or that you are a burden to the people around you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIES -->
+<section class="strategies" id="strategies">
+  <div class="strategies-layout">
+    <div class="strategies-text">
+      <p class="section-label">Daily practice</p>
+      <h2 class="section-title">Small things that quietly change everything</h2>
+      <div class="divider"></div>
+      <p>You don't need an overhaul. Mental health improves through consistent, modest acts — not dramatic transformations.</p>
+      <p>The research is clear: small daily practices compound into real shifts in mood, cognition, and resilience over time.</p>
+    </div>
+    <div>
+      <ul class="strategy-list">
+        <li>
+          <span class="strategy-num">01</span>
+          <p><strong>Name what you feel</strong>Labeling emotions ("I feel anxious," not "I'm a mess") reduces their intensity and gives you agency over them.</p>
+        </li>
+        <li>
+          <span class="strategy-num">02</span>
+          <p><strong>Protect your sleep</strong>Seven to nine hours of sleep is not a luxury. It regulates every emotional and cognitive system you have.</p>
+        </li>
+        <li>
+          <span class="strategy-num">03</span>
+          <p><strong>Move your body daily</strong>Even a 20-minute walk significantly reduces anxiety and depression symptoms in clinical studies.</p>
+        </li>
+        <li>
+          <span class="strategy-num">04</span>
+          <p><strong>Limit doom-scrolling</strong>Intentional breaks from news and social media lower cortisol and give your nervous system room to settle.</p>
+        </li>
+        <li>
+          <span class="strategy-num">05</span>
+          <p><strong>Reach out — even briefly</strong>A two-minute text to someone you trust activates the same neurochemical pathways as longer conversation.</p>
+        </li>
+        <li>
+          <span class="strategy-num">06</span>
+          <p><strong>Talk to a professional</strong>Therapy is not a last resort. It's a skilled conversation that changes how you relate to your own mind.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CRISIS BANNER -->
+<div class="crisis">
+  <div class="crisis-text">
+    <h2>If you're in crisis right now</h2>
+    <p>You are not alone, and help is available around the clock. Please reach out.</p>
+  </div>
+  <div class="crisis-actions">
+    <a href="tel:988" class="btn-white">Call or Text 988</a>
+    <a href="https://www.crisistextline.org" class="btn-outline-white" target="_blank" rel="noopener">Text HOME to 741741</a>
+  </div>
+</div>
+
+<!-- RESOURCES -->
+<section class="resources" id="resources">
+  <p class="section-label">Go deeper</p>
+  <h2 class="section-title">Trusted resources</h2>
+  <div class="divider"></div>
+  <div class="resources-grid">
+    <div class="resource-card">
+      <div class="resource-card-bar bar-sage"></div>
+      <div class="resource-card-body">
+        <h3>988 Suicide & Crisis Lifeline</h3>
+        <p>Free, confidential support for people in emotional distress or suicidal crisis. Call or text anytime.</p>
+        <a href="https://988lifeline.org" target="_blank" rel="noopener">Visit 988lifeline.org →</a>
+      </div>
+    </div>
+    <div class="resource-card">
+      <div class="resource-card-bar bar-clay"></div>
+      <div class="resource-card-body">
+        <h3>NAMI</h3>
+        <p>The National Alliance on Mental Illness offers education, support groups, and advocacy for individuals and families.</p>
+        <a href="https://nami.org" target="_blank" rel="noopener">Visit nami.org →</a>
+      </div>
+    </div>
+    <div class="resource-card">
+      <div class="resource-card-bar bar-dusk"></div>
+      <div class="resource-card-body">
+        <h3>Mental Health America</h3>
+        <p>Screening tools, community programs, and mental health research in plain language for everyday use.</p>
+        <a href="https://mhanational.org" target="_blank" rel="noopener">Visit mhanational.org →</a>
+      </div>
+    </div>
+    <div class="resource-card">
+      <div class="resource-card-bar bar-mist"></div>
+      <div class="resource-card-body">
+        <h3>Psychology Today Therapist Finder</h3>
+        <p>Search therapists by location, insurance, specialty, and approach to find a professional that fits your needs.</p>
+        <a href="https://www.psychologytoday.com/us/therapists" target="_blank" rel="noopener">Find a therapist →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Mind Matter</div>
+  <p class="footer-note">This page is for informational purposes only and does not constitute medical advice. If you are experiencing a mental health emergency, please contact a qualified professional or emergency services.</p>
+  <div class="footer-hotline">
+    Crisis line (US)<strong>988</strong>
+  </div>
+</footer>
+
+</body>
+</html>
